@@ -12,11 +12,20 @@ const PATHS = {
 // Setup common configuration
 var common = {
   entry: PATHS.app,
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [
       {
         test: /\.css$/,
         loaders: ['style', 'css'],
+        include: PATHS.app
+      },
+      /* setup jsx */
+      {
+        test: /\.jsx$/,
+        loaders: ['babel'],
         include: PATHS.app
       }
     ]
