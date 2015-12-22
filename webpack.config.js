@@ -37,6 +37,11 @@ var common = {
         test: /\.jsx$/,
         loaders: ['babel'],
         include: PATHS.app
+      },
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: PATHS.app
       }
     ]
   },
