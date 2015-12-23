@@ -1,12 +1,17 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import NoteActions from '../actions/NoteActions';
+import update from 'react-addons-update';
 
 class NoteStore {
   constructor() {
     this.bindActions(NoteActions);
 
     this.notes = [];
+
+    this.exportPublicMethods({
+      list: this.list.bind(this)
+    });
   }
   create(note) {
     const notes = this.notes;
@@ -32,6 +37,11 @@ class NoteStore {
     this.setState({
       notes: this.notes.filter((note) => note.id !== id)
     });
+  }
+  list(ids) {
+    return (ids || []).map(
+      (id) => this.notes.filter((note) => note.id === id)
+    ).filter((a) => a).map((a) => a[0]);
   }
 }
 
